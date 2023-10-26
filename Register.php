@@ -7,21 +7,16 @@
         <title>Document</title>
     </head>
     <body>
-
-        <?php if(empty($_SESSION['user'])){?>
+        
         <form action="login.php" method="post">
             <label for="">username</label>
             <input type="text" name="user" /><br />
             <label for="">password</label>
             <input type="password" name="pass" /><br />
+            <label for="">comfirm password</label>
+            <input type="password" name="pass" /><br />
             <button type="submit">Login</button>
-
-            <?php }?>
-
-            <?php if(!empty($_SESSION['user']))
-            {
-                echo '<button type="submit">Logout</button>';
-            }?>
+            <p>if you have account.  <a href="index.php" >click here</a></p>
         </form>
 
         <?php 
@@ -29,8 +24,6 @@
             if(!empty($_SESSION['user']))
             {
                 echo 'Login Success';
-            }else{
-                echo "<p>if you don't have account. click here <a href='Register.php' >Register</a></p>";
             }
 
         ?>
