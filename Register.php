@@ -8,26 +8,20 @@
     </head>
     <body>
         
-        <form action="login.php" method="post">
+        <form action="process.php" method="post">
+            <input type="hidden" name="req" value="register" />
             <label for="">username</label>
             <input type="text" name="user" /><br />
             <label for="">password</label>
             <input type="password" name="pass" /><br />
             <label for="">comfirm password</label>
-            <input type="password" name="pass" /><br />
-            <button type="submit">Login</button>
-            <p>if you have account.  <a href="index.php" >click here</a></p>
+            <input type="password" name="confrim_pass" /><br />
+            <button type="submit"name ="regis">register</button>
+            <p>if you have account.  <a href="index.php">
+                click here</a>
+            </p>
         </form>
-
-        <?php 
-
-            if(!empty($_SESSION['user']))
-            {
-                echo 'Login Success';
-            }
-
-        ?>
-
+        
     </body>
 </html>
 

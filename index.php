@@ -8,21 +8,30 @@
     </head>
     <body>
 
-        <?php if(empty($_SESSION['user'])){?>
-        <form action="login.php" method="post">
-            <label for="">username</label>
-            <input type="text" name="user" /><br />
-            <label for="">password</label>
-            <input type="password" name="pass" /><br />
-            <button type="submit">Login</button>
+        <?php if(empty($_SESSION['user'])) { ?>
+            <form action="process.php" method="post">
 
-            <?php }?>
+                <input type="hidden" name="req" value="login" />
+                
+                <label for="">username</label>
+                <input type="text" name="user" /><br />
 
-            <?php if(!empty($_SESSION['user']))
-            {
-                echo '<button type="submit">Logout</button>';
-            }?>
-        </form>
+                <label for="">password</label>
+                <input type="password" name="pass" /><br />
+
+                <button type="submit">Login</button>
+                
+            </form>
+        <?php } ?>
+
+        
+        <?php if(!empty($_SESSION['user'])) {?>
+            <form action="logout.php" method="post">
+                <button type="submit">
+                    Logout
+                </button>
+            </form>
+        <?php } ?>
 
         <?php 
 
