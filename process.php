@@ -7,7 +7,8 @@
         case "login":
 
             $engine->user->login($_POST['user'], $_POST['pass']);
-
+            
+            
         break;
 
         case "register":
@@ -20,3 +21,4 @@
             echo "Request is not working.";
 
     }
+?>

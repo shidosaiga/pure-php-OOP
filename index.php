@@ -1,4 +1,7 @@
-<?php include 'system/engine.php'; ?>
+<?php include 'system/engine.php'; 
+
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -23,7 +26,7 @@
                 
             </form>
         <?php } ?>
-
+        
         
         <?php if(!empty($_SESSION['user'])) {?>
             <form action="logout.php" method="post">
@@ -31,6 +34,18 @@
                     Logout
                 </button>
             </form>
+        <?php } ?>
+
+        <?php 
+            if(
+                $engine->user->Permission() == 1
+            ){
+        ?>
+            
+                <button>
+                    <a href="test.php" class="">Backend</a>
+                </button>
+            
         <?php } ?>
 
         <?php 

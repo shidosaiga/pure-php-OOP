@@ -40,6 +40,29 @@ class Users extends Database
 
     }
 
+    public function Permission()
+    {
+
+        if(!empty($_SESSION['user']))
+        {
+
+            $user_login = $_SESSION['user'];
+
+            $db = $this->connect();
+            $sql = "SELECT * FROM `user` WHERE `id` = ?";
+            $query = $db->prepare($sql);
+            $query->execute([$user_login]);
+            
+            $result = $query->fetch(PDO::FETCH_OBJ);
+
+            return $result->permission;
+
+        }else{
+            return false;
+        }
+
+    }
+
     public function login($user, $pass)
     {
 
