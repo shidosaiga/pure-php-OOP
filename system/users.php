@@ -119,25 +119,31 @@ class Users extends Database
             $query->execute([$user]);
 
             $result = $query->fetch(PDO::FETCH_OBJ);
+            if ($pass == $pass_confrim){
+               
+                if ($result->user != $user) {
 
-            if ($result->user != $user) {
+                    $sql = "INSERT INTO `user`(`user`, `pass`) VALUES(:username, :passwd)";
+                    $query = $db->prepare($sql);
+                    $query->bindParam(':username', $user, PDO::PARAM_STR);
+                    $query->bindParam(':passwd', $pass, PDO::PARAM_STR);
+                    $query->execute();
+    
+                    $lastId = $db->lastInsertId();
+    
+                    $_SESSION['user'] = $lastId;
+    
+                    echo '<script> alert("เข้าสู่ระบบเรียบร้อย"); </script>';
+                    header("Refresh:0; url=index.php");
+    
+                } else {
+                    echo '<script> alert("มีชื่อผู้ใช้นี้อยู่ในระบบแล้ว, โปรดใช้ชื่อผู้ใช้ใหม่"); </script>';
+                    header("Refresh:0; url=register.php");
+                }
 
-                $sql = "INSERT INTO `user`(`user`, `pass`) VALUES(:username, :passwd)";
-                $query = $db->prepare($sql);
-                $query->bindParam(':username', $user, PDO::PARAM_STR);
-                $query->bindParam(':passwd', $pass, PDO::PARAM_STR);
-                $query->execute();
-
-                $lastId = $db->lastInsertId();
-
-                $_SESSION['user'] = $lastId;
-
-                echo '<script> alert("เข้าสู่ระบบเรียบร้อย"); </script>';
-                header("Refresh:0; url=index.php");
-
-            } else {
-                echo '<script> alert("มีชื่อผู้ใช้นี้อยู่ในระบบแล้ว, โปรดใช้ชื่อผู้ใช้ใหม่"); </script>';
-                header("Refresh:0; url=register.php");
+            }else{
+                echo '<script> alert("โปรดยืนยันรหัสผ่าน"); </script>';
+            header("Refresh:0; url=register.php");
             }
 
         } else {

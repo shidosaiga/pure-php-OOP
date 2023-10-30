@@ -15,13 +15,10 @@
             <form action="process.php" method="post">
 
                 <input type="hidden" name="req" value="login" />
-                
                 <label for="">username</label>
                 <input type="text" name="user" /><br />
-
                 <label for="">password</label>
                 <input type="password" name="pass" /><br />
-
                 <button type="submit">Login</button>
                 
             </form>
@@ -39,13 +36,10 @@
         <?php 
             if(
                 $engine->user->Permission() == 1
-            ){
-        ?>
-            
+            ){?>
                 <button>
                     <a href="test.php" class="">Backend</a>
                 </button>
-            
         <?php } ?>
 
         <?php 
