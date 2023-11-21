@@ -17,6 +17,21 @@ class Backend Extends Database
 
     }
 
+    
+    public function ShowUsers() 
+    { 
+
+        $db = $this->connect();
+        $sql = "SELECT * FROM `user` ORDER BY `id`";
+        $query = $db->prepare($sql);
+        $query->execute();
+
+        $result = $query->fetchAll(PDO::FETCH_OBJ);
+        
+        return $result;
+
+    }
+
     public function TodoInsert($title, $des)
     { 
 
